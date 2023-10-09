@@ -1,0 +1,9 @@
+[
+    {
+        "year": 2021,
+        "price": 10000,
+        "country": "Japan",
+        "city": "Tokyo",
+        "car_model_name": "Corolla"
+    }
+]

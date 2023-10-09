@@ -1,0 +1,62 @@
+// database
+datasource db {
+    provider = "sqlite"
+    url      = "file:database.db"
+}
+
+// generator
+generator client {
+    provider             = "prisma-client-py"
+    interface            = "sync"
+    recursive_type_depth = 5
+}
+
+// data models
+model User {
+    username        String @id @unique
+    email           String @unique
+    full_name       String
+    hashed_password String
+}
+
+model Token {
+    access_token String @id
+    token_type   String
+}
+
+model TokenData {
+    username String @id
+}
+
+model CarBrand {
+    name     String     @id
+    CarModel CarModel[]
+}
+
+model CarModel {
+    name         String   @id
+    brand_name   String
+    horse_power  Int
+    fuel_type    String
+    fuel_economy Float
+    brand        CarBrand @relation(fields: [brand_name], references: [name])
+    Car          Car[]
+}
+
+model Car {
+    id             Int      @id @default(autoincrement())
+    car_model      CarModel @relation(fields: [car_model_name], references: [name])
+    car_model_name String
+    year           Int
+    country        String
+    city           String
+    price          Int
+}
+
+model Reviews {
+    id Int @id @default(autoincrement())
+}
+
+model Booking {
+    id Int @id @default(autoincrement())
+}

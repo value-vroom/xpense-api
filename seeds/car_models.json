@@ -1,0 +1,9 @@
+[
+    {
+        "name": "Corolla",
+        "horse_power": 100,
+        "fuel_type": "gasoline",
+        "fuel_economy": 10.0,
+        "brand_name": "Toyota"
+    }
+]
