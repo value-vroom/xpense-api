@@ -1,0 +1,20 @@
+name: CI
+on: [push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - run: python3 -m venv venv
+      - run: |
+          source venv/bin/activate
+          pip install poetry
+          poetry install
+          prisma generate
+          make lint

@@ -1,7 +1,8 @@
 """This is a helper library, which seeds the database with some data"""
+import json
 import pathlib
 import subprocess
-import json
+
 import app
 from app.utility import security
 from prisma import Prisma, get_client, register
