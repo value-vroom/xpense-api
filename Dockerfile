@@ -1,6 +1,6 @@
 FROM alpine:3.18
 
-RUN apk add python3 py3-pip nodejs
+RUN apk add gcc python3 python3-dev libffi-dev musl-dev py3-pip nodejs
 
 COPY . /app
 

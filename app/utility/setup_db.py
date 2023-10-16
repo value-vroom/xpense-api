@@ -11,7 +11,7 @@ from prisma import Prisma, get_client, register, Base64
 def delete_db() -> None:
     """Delete the database"""
     database_dir = (pathlib.Path(app.__file__).parent.parent / "prisma" / "database.db").resolve()
-    subprocess.run(["rm", database_dir], check=True)  # noqa: S603, S607
+    subprocess.run(["rm", "-f", database_dir], check=True)  # noqa: S603, S607
     subprocess.run(["prisma", "db", "push"], check=True)  # noqa: S603, S607
 
 
