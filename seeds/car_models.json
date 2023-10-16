@@ -1,9 +1,34 @@
 [
     {
-        "name": "Corolla",
+        "name": "Toyota Corolla",
         "horse_power": 100,
-        "fuel_type": "gasoline",
+        "fuel_type": "gas",
         "fuel_economy": 10.0,
-        "brand_name": "Toyota"
+        "brand_name": "Toyota",
+        "image_name": "toyota-corolla.png"
+    },
+    {
+        "name": "Peugeot 206",
+        "horse_power": 100,
+        "fuel_type": "gas",
+        "fuel_economy": 10.0,
+        "brand_name": "Peugeot",
+        "image_name": "peugeot-206.png"
+    },
+    {
+        "name": "Tesla Model 3",
+        "horse_power": 100,
+        "fuel_type": "electric",
+        "fuel_economy": 10.0,
+        "brand_name": "Tesla",
+        "image_name": "tesla-model-3.png"
+    },
+    {
+        "name": "Ford F150 Lightning",
+        "horse_power": 100,
+        "fuel_type": "electric",
+        "fuel_economy": 10.0,
+        "brand_name": "Ford",
+        "image_name": "ford-f150-lightning.png"
     }
 ]

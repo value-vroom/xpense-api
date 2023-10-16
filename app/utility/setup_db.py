@@ -5,7 +5,7 @@ import subprocess
 
 import app
 from app.utility import security
-from prisma import Prisma, get_client, register
+from prisma import Prisma, get_client, register, Base64
 
 
 def delete_db() -> None:
@@ -28,6 +28,12 @@ def seed_db() -> None:
 
     # Seeds dir
     seeds_dir = pathlib.Path(app.__file__).parent.parent / "seeds"
+
+    # Setup images
+    # iterate over all images in the images directory
+    images_dir = seeds_dir / "images"
+    for image in images_dir.iterdir():
+        db.image.create(data={"name": image.name, "data": Base64.encode(image.read_bytes())})
 
     # Setup car brand
     car_brands = json.loads((seeds_dir / "car_brands.json").read_text())
@@ -52,12 +58,7 @@ def seed_db() -> None:
         db.user.create(data=user)
 
 
-def setup_db() -> None:
-    """Seeds the database with some data"""
+if __name__ == "__main__":
     delete_db()
     register_prisma()
     seed_db()
-
-
-if __name__ == "__main__":
-    setup_db()

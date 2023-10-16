@@ -13,4 +13,4 @@ RUN poetry install
 
 RUN prisma generate
 
-CMD ["sh", "-c", "python3 app"]
+CMD ["sh", "-c", "uvicorn app.main:app"]

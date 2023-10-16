@@ -1,10 +1,11 @@
 """FastAPI main module"""
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from prisma.errors import DataError
 
 from app import routers
-from app.utility.setup_db import setup_db
+from app.utility.setup_db import register_prisma
 
 app = FastAPI(
     title="ValueVroom API",
@@ -12,7 +13,15 @@ app = FastAPI(
 )
 app.include_router(routers.router)
 
-setup_db()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+register_prisma()
 
 
 @app.exception_handler(DataError)

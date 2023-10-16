@@ -1,28 +1,44 @@
 docker:
 	@docker build -t value-vroom/api .
 
-lint:
+venv:
+	@python3 -m venv venv && \
+	venv/bin/pip install -e .
+
+lint: venv
 	@echo " - black" && \
-	black -q --check app  && \
+	venv/bin/black -q --check app  && \
 	echo " - isort" && \
-	isort --check app && \
+	venv/bin/isort --check app && \
 	echo " - ruff" && \
-	ruff app && \
+	venv/bin/ruff app && \
 	echo " - mypy" && \
-	mypy app && \
+	venv/bin/mypy app && \
 	echo "Passed all linting checks!"
 
-reformat:
+reformat: venv
 	@echo " - ruff" && \
-	ruff --fix app && \
+	venv/bin/ruff --fix app && \
 	echo " - black" && \
-	black -q app && \
+	venv/bin/black -q app && \
 	echo " - isort" && \
-	isort app && \
+	venv/bin/isort app && \
 	echo "Reformatted code!"
 
-run:
-	@ruff app && \
-	venv/bin/python app
+run: venv
+	@echo "Starting server..."
+	@venv/bin/ruff app || true
+	@venv/bin/python3 app/utility/setup_db.py && \
+	venv/bin/uvicorn --proxy-headers app.main:app
 
-dev: run
+dev: venv
+	@venv/bin/watchmedo auto-restart \
+		--directory=./app --directory=./prisma \
+		--pattern="*.py;*.prisma" \
+		--recursive \
+		$(MAKE) -- run
+
+tunnel:
+	@cloudflared tunnel --url http://localhost:8000
+
+.PHONY: docker lint reformat run dev

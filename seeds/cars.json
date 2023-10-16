@@ -1,9 +1,30 @@
 [
     {
         "year": 2021,
-        "price": 10000,
-        "country": "Japan",
-        "city": "Tokyo",
-        "car_model_name": "Corolla"
+        "price": 100,
+        "country": "Denmark",
+        "city": "Odense",
+        "car_model_name": "Toyota Corolla"
+    },
+    {
+        "year": 1999,
+        "price": 100,
+        "country": "Denmark",
+        "city": "Odense",
+        "car_model_name": "Peugeot 206"
+    },
+    {
+        "year": 2023,
+        "price": 500,
+        "country": "Denmark",
+        "city": "Odense",
+        "car_model_name": "Ford F150 Lightning"
+    },
+    {
+        "year": 2023,
+        "price": 100,
+        "country": "Denmark",
+        "city": "Odense",
+        "car_model_name": "Tesla Model 3"
     }
 ]

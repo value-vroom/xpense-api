@@ -23,6 +23,8 @@ black = "^23.9.1"
 isort = "^5.12.0"
 ruff = "^0.0.292"
 mypy = "^1.5.1"
+pyngrok = "^7.0.0"
+watchdog = "^3.0.0"
 
 [tool.isort]
 line_length = 110

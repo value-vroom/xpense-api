@@ -28,6 +28,12 @@ model TokenData {
     username String @id
 }
 
+model Image {
+    name     String     @id
+    data     Bytes
+    CarModel CarModel[]
+}
+
 model CarBrand {
     name     String     @id
     CarModel CarModel[]
@@ -36,10 +42,12 @@ model CarBrand {
 model CarModel {
     name         String   @id
     brand_name   String
+    image_name   String
     horse_power  Int
     fuel_type    String
     fuel_economy Float
     brand        CarBrand @relation(fields: [brand_name], references: [name])
+    image        Image    @relation(fields: [image_name], references: [name])
     Car          Car[]
 }
 

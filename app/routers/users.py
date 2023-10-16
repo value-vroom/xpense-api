@@ -16,7 +16,7 @@ def current_user(current_user: Annotated[User, Depends(get_current_user)]) -> Us
     return current_user
 
 
-@router.get("/users")
+@router.get("/users", operation_id="get_users")
 def users() -> list[User]:
     """Get all users"""
     db = get_client()

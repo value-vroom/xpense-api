@@ -1,5 +1,14 @@
 [
     {
         "name": "Toyota"
+    },
+    {
+        "name": "Tesla"
+    },
+    {
+        "name": "Ford"
+    },
+    {
+        "name": "Peugeot"
     }
 ]

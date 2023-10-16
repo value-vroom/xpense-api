@@ -7,7 +7,7 @@ from prisma import get_client
 router = APIRouter(tags=["Cars"])
 
 
-@router.get("/cars", response_model_exclude_none=True)
+@router.get("/cars", summary="Get Cars", response_model_exclude_none=True)
 def get_cars() -> list[Car]:
     """Get all cars"""
     db = get_client()
