@@ -13,4 +13,6 @@ RUN poetry install
 
 RUN prisma generate
 
+RUN python3 app/utility/setup_db.py
+
 CMD ["sh", "-c", "uvicorn app.main:app"]
