@@ -15,4 +15,6 @@ RUN prisma generate
 
 RUN python3 app/utility/setup_db.py
 
-CMD ["sh", "-c", "uvicorn app.main:app"]
+EXPOSE 8000
+
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port 8000"]

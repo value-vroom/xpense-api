@@ -1,0 +1,17 @@
+version: '3.7'
+
+networks:
+    web:
+        external: true
+
+services:
+  value-vroom-api:
+    build: .
+    restart: unless-stopped
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.valuevroomapi.rule=Host(`value-vroom-api.gredal.dev`)"
+      - "traefik.http.routers.valuevroomapi.tls=true"
+      - "traefik.http.routers.valuevroomapi.entrypoints=websecure"
