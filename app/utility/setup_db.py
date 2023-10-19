@@ -57,6 +57,16 @@ def seed_db() -> None:
         del user["password"]
         db.user.create(data=user)
 
+    # Setup booking status
+    booking_statuses = json.loads((seeds_dir / "booking_status.json").read_text())
+    for booking_status in booking_statuses:
+        db.bookingstatus.create(data=booking_status)
+
+    # Setup bookings
+    bookings = json.loads((seeds_dir / "bookings.json").read_text())
+    for booking in bookings:
+        db.booking.create(data=booking)
+
 
 if __name__ == "__main__":
     delete_db()

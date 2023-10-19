@@ -1,0 +1,30 @@
+[
+    {
+        "start_date": "2023-09-17T12:55:29.102000Z",
+        "end_date": "2023-11-17T13:55:29.102000Z",
+        "car_id": 1,
+        "username": "admin",
+        "status_name": "Booked"
+    },
+    {
+        "start_date": "2023-11-17T12:55:29.102000Z",
+        "end_date": "2023-11-17T13:55:29.102000Z",
+        "car_id": 3,
+        "username": "admin",
+        "status_name": "Booked"
+    },
+    {
+        "start_date": "2022-09-17T12:55:29.102000Z",
+        "end_date": "2022-09-17T13:55:29.102000Z",
+        "car_id": 1,
+        "username": "user1",
+        "status_name": "Completed"
+    },
+    {
+        "start_date": "2023-09-17T12:55:29.102000Z",
+        "end_date": "2023-09-17T13:55:29.102000Z",
+        "car_id": 2,
+        "username": "admin",
+        "status_name": "Completed"
+    }
+]

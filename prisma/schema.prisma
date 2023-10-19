@@ -13,10 +13,11 @@ generator client {
 
 // data models
 model User {
-    username        String @id @unique
-    email           String @unique
+    username        String    @id @unique
+    email           String    @unique
     full_name       String
     hashed_password String
+    Booking         Booking[]
 }
 
 model Token {
@@ -52,19 +53,33 @@ model CarModel {
 }
 
 model Car {
-    id             Int      @id @default(autoincrement())
-    car_model      CarModel @relation(fields: [car_model_name], references: [name])
+    id             Int       @id @default(autoincrement())
+    car_model      CarModel  @relation(fields: [car_model_name], references: [name])
     car_model_name String
     year           Int
     country        String
     city           String
     price          Int
+    Booking        Booking[]
 }
 
-model Reviews {
-    id Int @id @default(autoincrement())
+model BookingStatus {
+    name    String    @id
+    Booking Booking[]
 }
 
 model Booking {
+    id          Int           @id @default(autoincrement())
+    start_date  DateTime      @default(now())
+    end_date    DateTime
+    car_id      Int
+    car         Car           @relation(fields: [car_id], references: [id])
+    user        User          @relation(fields: [username], references: [username])
+    username    String
+    status_name String
+    status      BookingStatus @relation(fields: [status_name], references: [name])
+}
+
+model Reviews {
     id Int @id @default(autoincrement())
 }
