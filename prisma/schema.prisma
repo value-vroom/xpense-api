@@ -60,6 +60,7 @@ model Car {
     country        String
     city           String
     price          Int
+    rating         Float
     Booking        Booking[]
 }
 

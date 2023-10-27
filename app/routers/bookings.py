@@ -37,6 +37,19 @@ def get_bookings(current_user: Annotated[User, Depends(get_current_user)]) -> li
     for booking in bookings:
         if booking.status_name != "Booked":
             continue
+        # If end date is in the past, set status to "Completed"
+        if booking.end_date < datetime.now(timezone.utc):
+            booking.status_name = "Completed"
+            db.booking.update(
+                where={
+                    "id": booking.id,
+                },
+                data={
+                    "status_name": "Completed",
+                },
+            )
+            continue
+
         # Check if booking is active
         if booking.start_date < datetime.now(timezone.utc) and booking.end_date > datetime.now(timezone.utc):
             booking.status_name = "Pending"
@@ -92,5 +105,107 @@ def create_booking(
             "username": current_user.username,
             "car_id": car_id,
             "status_name": "Booked",
+        },
+    )
+
+
+# Cancel a booking for the current user
+@router.post("/bookings/{booking_id}/cancel", summary="Cancel Booking", response_model_exclude_none=True)
+def cancel_booking(
+    booking_id: int,
+    current_user: Annotated[User, Depends(get_current_user)],
+) -> Booking:
+    """Cancel a booking"""
+    db = get_client()
+    booking = db.booking.find_first(
+        where={
+            "id": booking_id,
+        },
+    )
+
+    if booking is None:
+        raise Exception("Booking not found")
+
+    if booking.username != current_user.username:
+        raise Exception("Booking not found")
+
+    if booking.status_name != "Booked" and booking.status_name != "Pending":
+        raise Exception("Booking is not active")
+
+    db.booking.update(
+        where={
+            "id": booking_id,
+        },
+        data={
+            "status_name": "Cancelled",
+        },
+    )
+
+    return db.booking.find_first(
+        where={
+            "id": booking_id,
+        },
+        include={
+            "car": {
+                "include": {
+                    "car_model": {
+                        "include": {
+                            "brand": True,
+                        },
+                    },
+                },
+            },
+            "status": True,
+        },
+    )
+
+
+# Cancel a booking for the current user
+@router.post("/bookings/{booking_id}/activate", summary="Activate Booking", response_model_exclude_none=True)
+def activate_booking(
+    booking_id: int,
+    current_user: Annotated[User, Depends(get_current_user)],
+) -> Booking:
+    """Activate a booking"""
+    db = get_client()
+    booking = db.booking.find_first(
+        where={
+            "id": booking_id,
+        },
+    )
+
+    if booking is None:
+        raise Exception("Booking not found")
+
+    if booking.username != current_user.username:
+        raise Exception("Booking not found")
+
+    if booking.status_name != "Pending":
+        raise Exception("Booking is not pending")
+
+    db.booking.update(
+        where={
+            "id": booking_id,
+        },
+        data={
+            "status_name": "Active",
+        },
+    )
+
+    return db.booking.find_first(
+        where={
+            "id": booking_id,
+        },
+        include={
+            "car": {
+                "include": {
+                    "car_model": {
+                        "include": {
+                            "brand": True,
+                        },
+                    },
+                },
+            },
+            "status": True,
         },
     )

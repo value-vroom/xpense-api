@@ -4,27 +4,31 @@
         "price": 100,
         "country": "Denmark",
         "city": "Odense",
-        "car_model_name": "Toyota Corolla"
+        "car_model_name": "Toyota Corolla",
+        "rating": 5
     },
     {
         "year": 1999,
         "price": 100,
         "country": "Denmark",
         "city": "Odense",
-        "car_model_name": "Peugeot 206"
+        "car_model_name": "Peugeot 206",
+        "rating": 4
     },
     {
         "year": 2023,
         "price": 500,
         "country": "Denmark",
         "city": "Odense",
-        "car_model_name": "Ford F150 Lightning"
+        "car_model_name": "Ford F150 Lightning",
+        "rating": 3
     },
     {
         "year": 2023,
         "price": 100,
         "country": "Denmark",
         "city": "Odense",
-        "car_model_name": "Tesla Model 3"
+        "car_model_name": "Tesla Model 3",
+        "rating": 2
     }
 ]
