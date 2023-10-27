@@ -139,7 +139,7 @@ def cancel_booking(
             "id": booking_id,
         },
         data={
-            "status_name": "Cancelled",
+            "status_name": "Completed",
         },
     )
 
