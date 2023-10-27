@@ -87,6 +87,8 @@ def create_booking(
     )
 
     for booking in bookings:
+        if booking.status_name == "Completed":
+            continue
         if booking.start_date.astimezone(timezone.utc) < start_date.astimezone(
             timezone.utc,
         ) < booking.end_date.astimezone(timezone.utc) or booking.start_date.astimezone(
