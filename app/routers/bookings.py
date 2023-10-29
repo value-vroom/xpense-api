@@ -53,6 +53,14 @@ def get_bookings(current_user: Annotated[User, Depends(get_current_user)]) -> li
         # Check if booking is active
         if booking.start_date < datetime.now(timezone.utc) and booking.end_date > datetime.now(timezone.utc):
             booking.status_name = "Pending"
+            db.booking.update(
+                where={
+                    "id": booking.id,
+                },
+                data={
+                    "status_name": "Pending",
+                },
+            )
 
     return bookings
 
