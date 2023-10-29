@@ -72,9 +72,6 @@ def get_available_cars() -> list[Car]:
                 "car": {
                     "id": car.id,
                 },
-                "status": {
-                    "name": "Booked",
-                },
             },
         )
         if len(bookings) == 0:
@@ -82,6 +79,8 @@ def get_available_cars() -> list[Car]:
         else:
             car_booked = False
             for booking in bookings:
+                if booking.status_name == "Completed" or booking.status_name == "Cancelled":
+                    continue
                 if booking.start_date < datetime.now(timezone.utc) and booking.end_date > datetime.now(
                     timezone.utc,
                 ):
