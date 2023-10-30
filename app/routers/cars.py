@@ -116,4 +116,7 @@ def get_car_reviews(car_id: int) -> list[Review]:
                 "id": car_id,
             },
         },
+        include={
+            "user": True,
+        },
     )
