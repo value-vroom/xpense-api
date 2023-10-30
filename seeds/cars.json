@@ -13,7 +13,7 @@
         "country": "Denmark",
         "city": "Odense",
         "car_model_name": "Peugeot 206",
-        "rating": 4
+        "rating": 4.2
     },
     {
         "year": 2023,
@@ -21,7 +21,7 @@
         "country": "Denmark",
         "city": "Odense",
         "car_model_name": "Ford F150 Lightning",
-        "rating": 3
+        "rating": 3.8
     },
     {
         "year": 2023,
@@ -29,6 +29,6 @@
         "country": "Denmark",
         "city": "Odense",
         "car_model_name": "Tesla Model 3",
-        "rating": 2
+        "rating": 2.5
     }
 ]
