@@ -905,6 +905,25 @@ pycrypto = ["pyasn1", "pycrypto (>=2.6.0,<2.7.0)"]
 pycryptodome = ["pyasn1", "pycryptodome (>=3.3.1,<4.0.0)"]
 
 [[package]]
+name = "python-lorem"
+version = "1.3.0.post1"
+description = "Lorem ipsum generator."
+optional = false
+python-versions = ">=3.5"
+files = [
+    {file = "python-lorem-1.3.0.post1.tar.gz", hash = "sha256:6a890b0ae42aea21e90bdd0c2c270843178402b3f2c75a3a454d76db8c597716"},
+    {file = "python_lorem-1.3.0.post1-cp310-none-any.whl", hash = "sha256:a4db9ea35622e17920c6b021e437741fafa133a2a6835770fdf18846800263a2"},
+    {file = "python_lorem-1.3.0.post1-cp311-none-any.whl", hash = "sha256:e72b925481b788341cb258c23b959ed479c18bd55335dfaa974e09cb25a67fba"},
+    {file = "python_lorem-1.3.0.post1-cp38-none-any.whl", hash = "sha256:bc911215e220a0a2dd98d233b95b831db1ce2804ab9fff724f6c34ee2c6f165f"},
+    {file = "python_lorem-1.3.0.post1-cp39-none-any.whl", hash = "sha256:da5265724035decf14e873e72c940587bfef539648bf0d3a9ec731041d42d41e"},
+    {file = "python_lorem-1.3.0.post1-pp38-none-any.whl", hash = "sha256:444a2f6d9c1b373119bc20ccad776476fe9b761b531ea50c45b6406e5447fe5f"},
+    {file = "python_lorem-1.3.0.post1-pp39-none-any.whl", hash = "sha256:9d17253bb7040eef86cac76658eae9628d11c238b2f60e9b0b7a5c3a8b66643e"},
+]
+
+[package.extras]
+docs = ["Sphinx (>=6.1.3)", "furo", "sphinx-autodoc-typehints", "sphinx-copybutton", "sphinx-opengraph"]
+
+[[package]]
 name = "python-multipart"
 version = "0.0.6"
 description = "A streaming multipart parser for Python"
@@ -1254,4 +1273,4 @@ dev = ["black (>=19.3b0)", "pytest (>=4.6.2)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "c2576804d15247f364fb0a0f00e08b2478b95431e17b82aefc6342b006ed7a83"
+content-hash = "76a2abe891d26b2431fa1c2be861077e3e7f0a4e65b545c041762d4c239d2f9b"

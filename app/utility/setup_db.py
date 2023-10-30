@@ -2,10 +2,16 @@
 import json
 import pathlib
 import subprocess
-
+import lorem
 import app
+import random
 from app.utility import security
 from prisma import Prisma, get_client, register, Base64
+
+
+def clamp(n: int, minn: int, maxn: int) -> int:
+    """Clamp a number between a min and max value"""
+    return max(min(maxn, n), minn)
 
 
 def delete_db() -> None:
@@ -22,7 +28,7 @@ def register_prisma() -> None:
     register(db)
 
 
-def seed_db() -> None:
+def seed_db() -> None:  # noqa: C901
     """Seeds the database with some data"""
     db = get_client()
 
@@ -47,15 +53,17 @@ def seed_db() -> None:
 
     # Setup cars
     cars = json.loads((seeds_dir / "cars.json").read_text())
+    cars_db = []
     for car in cars:
-        db.car.create(data=car)
+        cars_db.append(db.car.create(data=car))  # noqa: PERF401
 
     # Setup users
     users = json.loads((seeds_dir / "users.json").read_text())
+    users_db = []
     for user in users:
         user["hashed_password"] = security.get_password_hash(user["password"])
         del user["password"]
-        db.user.create(data=user)
+        users_db.append(db.user.create(data=user))
 
     # Setup booking status
     booking_statuses = json.loads((seeds_dir / "booking_status.json").read_text())
@@ -66,6 +74,39 @@ def seed_db() -> None:
     bookings = json.loads((seeds_dir / "bookings.json").read_text())
     for booking in bookings:
         db.booking.create(data=booking)
+
+    # Setup reviews
+    for car in cars_db:
+        baseline = random.randint(1, 5)  # noqa: S311
+        rating_sum = 0
+        num_ratings = 0
+        for user in users_db:
+            for _ in range(5):
+                rating = clamp(baseline + random.randint(-1, 1), 0, 5)  # noqa: S311
+                rating_sum += rating
+                num_ratings += 1
+                db.review.create(
+                    data={
+                        "rating": rating,
+                        "comment": lorem.get_sentence(count=1),
+                        "car": {
+                            "connect": {
+                                "id": car.id,
+                            },
+                        },
+                        "user": {
+                            "connect": {
+                                "username": user.username,
+                            },
+                        },
+                    },
+                )
+        db.car.update(
+            data={
+                "rating": round(rating_sum / num_ratings, 1),
+            },
+            where={"id": car.id},
+        )
 
 
 if __name__ == "__main__":

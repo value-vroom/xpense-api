@@ -18,6 +18,7 @@ model User {
     full_name       String
     hashed_password String
     Booking         Booking[]
+    Reviews         Review[]
 }
 
 model Token {
@@ -62,6 +63,7 @@ model Car {
     price          Int
     rating         Float
     Booking        Booking[]
+    Reviews        Review[]
 }
 
 model BookingStatus {
@@ -81,6 +83,12 @@ model Booking {
     status      BookingStatus @relation(fields: [status_name], references: [name])
 }
 
-model Reviews {
-    id Int @id @default(autoincrement())
+model Review {
+    id       Int    @id @default(autoincrement())
+    car_id   Int
+    car      Car    @relation(fields: [car_id], references: [id])
+    user     User   @relation(fields: [username], references: [username])
+    username String
+    rating   Float
+    comment  String
 }

@@ -131,7 +131,7 @@ def cancel_booking(
     if booking.username != current_user.username:
         raise Exception("Booking not found")
 
-    if booking.status_name != "Booked" and booking.status_name != "Pending":
+    if booking.status_name not in ("Booked", "Pending"):
         raise Exception("Booking is not active")
 
     db.booking.update(

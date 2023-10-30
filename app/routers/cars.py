@@ -1,6 +1,6 @@
 """This router is used to get the cars"""
 from fastapi import APIRouter, Depends
-from prisma.models import Car, User, Booking
+from prisma.models import Car, User, Booking, Review
 from datetime import datetime, timezone
 from prisma import get_client
 from typing import Annotated
@@ -79,7 +79,7 @@ def get_available_cars() -> list[Car]:
         else:
             car_booked = False
             for booking in bookings:
-                if booking.status_name == "Completed" or booking.status_name == "Cancelled":
+                if booking.status_name in ("Completed", "Cancelled"):
                     continue
                 if booking.start_date < datetime.now(timezone.utc) and booking.end_date > datetime.now(
                     timezone.utc,
@@ -97,6 +97,20 @@ def get_car_bookings(car_id: int) -> list[Booking]:
     """Get all bookings for a specific car"""
     db = get_client()
     return db.booking.find_many(
+        where={
+            "car": {
+                "id": car_id,
+            },
+        },
+    )
+
+
+# Get all reviews for a specific car
+@router.get("/cars/{car_id}/reviews", operation_id="get_car_reviews", response_model_exclude_none=True)
+def get_car_reviews(car_id: int) -> list[Review]:
+    """Get all reviews for a specific car"""
+    db = get_client()
+    return db.review.find_many(
         where={
             "car": {
                 "id": car_id,
