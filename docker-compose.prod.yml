@@ -5,7 +5,7 @@ networks:
         external: true
 
 services:
-  value-vroom-api:
+  xpense-api:
     build: .
     restart: unless-stopped
     networks:
