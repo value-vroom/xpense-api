@@ -1,5 +1,5 @@
 docker:
-	@docker build -t value-vroom/api .
+	@docker build -t xpense/api .
 
 venv:
 	@python3 -m venv venv && \

@@ -12,6 +12,6 @@ services:
       - web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.valuevroomapi.rule=Host(`value-vroom-api.gredal.dev`)"
-      - "traefik.http.routers.valuevroomapi.tls=true"
-      - "traefik.http.routers.valuevroomapi.entrypoints=websecure"
+      - "traefik.http.routers.xpenseapi.rule=Host(`xpense-api.gredal.dev`)"
+      - "traefik.http.routers.xpenseapi.tls=true"
+      - "traefik.http.routers.xpenseapi.entrypoints=websecure"

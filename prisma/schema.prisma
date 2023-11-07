@@ -13,12 +13,13 @@ generator client {
 
 // data models
 model User {
-    username        String    @id @unique
-    email           String    @unique
-    full_name       String
-    hashed_password String
-    Booking         Booking[]
-    Reviews         Review[]
+    username           String        @id @unique
+    email              String        @unique
+    full_name          String
+    hashed_password    String
+    profile_image_name String
+    profile_image      Image         @relation(fields: [profile_image_name], references: [name])
+    GroupMember        GroupMember[]
 }
 
 model Token {
@@ -31,64 +32,24 @@ model TokenData {
 }
 
 model Image {
-    name     String     @id
-    data     Bytes
-    CarModel CarModel[]
+    name String @id
+    data Bytes
+    User User[]
 }
 
-model CarBrand {
-    name     String     @id
-    CarModel CarModel[]
-}
-
-model CarModel {
-    name         String   @id
-    brand_name   String
-    image_name   String
-    horse_power  Int
-    fuel_type    String
-    fuel_economy Float
-    brand        CarBrand @relation(fields: [brand_name], references: [name])
-    image        Image    @relation(fields: [image_name], references: [name])
-    Car          Car[]
-}
-
-model Car {
-    id             Int       @id @default(autoincrement())
-    car_model      CarModel  @relation(fields: [car_model_name], references: [name])
-    car_model_name String
-    year           Int
-    country        String
-    city           String
-    price          Int
-    rating         Float
-    Booking        Booking[]
-    Reviews        Review[]
-}
-
-model BookingStatus {
-    name    String    @id
-    Booking Booking[]
-}
-
-model Booking {
+model Group {
     id          Int           @id @default(autoincrement())
-    start_date  DateTime      @default(now())
-    end_date    DateTime
-    car_id      Int
-    car         Car           @relation(fields: [car_id], references: [id])
-    user        User          @relation(fields: [username], references: [username])
-    username    String
-    status_name String
-    status      BookingStatus @relation(fields: [status_name], references: [name])
+    name        String
+    description String
+    GroupMember GroupMember[]
 }
 
-model Review {
-    id       Int    @id @default(autoincrement())
-    car_id   Int
-    car      Car    @relation(fields: [car_id], references: [id])
-    user     User   @relation(fields: [username], references: [username])
+model GroupMember {
+    group    Group   @relation(fields: [group_id], references: [id])
+    user     User    @relation(fields: [username], references: [username])
+    group_id Int
     username String
-    rating   Float
-    comment  String
+    is_owner Boolean @default(false)
+
+    @@id([group_id, username])
 }

@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "Holiday Expenses",
+        "description": "Expenses for the holiday season"
+    },
+    {
+        "id": 2,
+        "name": "LAN Party",
+        "description": "Expenses for the LAN party"
+    },
+    {
+        "id": 3,
+        "name": "New Car",
+        "description": "Expenses for the new car"
+    }
+]

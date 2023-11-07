@@ -3,12 +3,14 @@
         "username": "admin",
         "full_name": "admin",
         "email": "admin@admin.com",
-        "password": "admin"
+        "password": "admin",
+        "profile_image_name": "admin.png"
     },
     {
-        "username": "user1",
-        "full_name": "John Doe",
+        "username": "patrick",
+        "full_name": "Patrick Larsen",
         "email": "user@gmail.com",
-        "password": "hunter2"
+        "password": "hunter2",
+        "profile_image_name": "patrick.png"
     }
 ]
