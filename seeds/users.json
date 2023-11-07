@@ -9,7 +9,28 @@
     {
         "username": "patrick",
         "full_name": "Patrick Larsen",
-        "email": "user@gmail.com",
+        "email": "patrick@gmail.com",
+        "password": "hunter2",
+        "profile_image_name": "patrick.png"
+    },
+    {
+        "username": "oliver",
+        "full_name": "Oliver Larsen",
+        "email": "oliver@gmail.com",
+        "password": "hunter2",
+        "profile_image_name": "patrick.png"
+    },
+    {
+        "username": "jacob",
+        "full_name": "Jacob Larsen",
+        "email": "jakob@gmail.com",
+        "password": "hunter2",
+        "profile_image_name": "patrick.png"
+    },
+    {
+        "username": "michael",
+        "full_name": "Michael Larsen",
+        "email": "michael@gmail.com",
         "password": "hunter2",
         "profile_image_name": "patrick.png"
     }

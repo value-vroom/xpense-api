@@ -1,0 +1,22 @@
+[
+    {
+        "code": "USD",
+        "name": "United States Dollar",
+        "symbol": "$"
+    },
+    {
+        "code": "EUR",
+        "name": "Euro",
+        "symbol": "€"
+    },
+    {
+        "code": "GBP",
+        "name": "British Pound Sterling",
+        "symbol": "£"
+    },
+    {
+        "code": "DKK",
+        "name": "Danish Krone",
+        "symbol": "kr"
+    }
+]

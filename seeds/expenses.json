@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "name": "Icecream",
+        "description": "Ben & Jerry's",
+        "amount_in_cents": 500,
+        "group_id": 1,
+        "payer_username": "admin"
+    },
+    {
+        "id": 1,
+        "name": "Pizza",
+        "description": "Domino's",
+        "amount_in_cents": 1000,
+        "group_id": 4,
+        "payer_username": "patrick"
+    },
+    {
+        "id": 1,
+        "name": "Energy Drink",
+        "description": "Red Bull",
+        "amount_in_cents": 300,
+        "group_id": 2,
+        "payer_username": "oliver"
+    },
+    {
+        "id": 2,
+        "name": "Pinacolada",
+        "description": "Cocktail",
+        "amount_in_cents": 800,
+        "group_id": 1,
+        "payer_username": "michael"
+    },
+    {
+        "id": 1,
+        "name": "Tesla Model S",
+        "description": "Car",
+        "amount_in_cents": 100000,
+        "group_id": 3,
+        "payer_username": "jacob"
+    }
+]

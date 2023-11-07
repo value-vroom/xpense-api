@@ -47,6 +47,11 @@ def seed_db() -> None:  # noqa: C901
         del user["password"]
         users_db.append(db.user.create(data=user))
 
+    # Setup currencies
+    currencies = json.loads((seeds_dir / "currencies.json").read_text())
+    for currency in currencies:
+        db.currency.create(data=currency)
+
     # Setup groups
     groups = json.loads((seeds_dir / "groups.json").read_text())
     for group in groups:
@@ -56,6 +61,16 @@ def seed_db() -> None:  # noqa: C901
     group_members = json.loads((seeds_dir / "group_members.json").read_text())
     for group_member in group_members:
         db.groupmember.create(data=group_member)
+
+    # Setup expenses
+    expenses = json.loads((seeds_dir / "expenses.json").read_text())
+    for expense in expenses:
+        db.expense.create(data=expense)
+
+    # Setup expense members
+    expense_members = json.loads((seeds_dir / "expense_members.json").read_text())
+    for expense_member in expense_members:
+        db.expensemember.create(data=expense_member)
 
 
 if __name__ == "__main__":

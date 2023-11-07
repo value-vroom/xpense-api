@@ -1,0 +1,62 @@
+[
+    {
+        "expense_id": 1,
+        "username": "admin",
+        "amount_in_cents": 250,
+        "group_id": 1
+    },
+    {
+        "expense_id": 1,
+        "username": "patrick",
+        "amount_in_cents": 250,
+        "group_id": 1
+    },
+    {
+        "expense_id": 1,
+        "username": "patrick",
+        "amount_in_cents": 500,
+        "group_id": 4
+    },
+    {
+        "expense_id": 1,
+        "username": "michael",
+        "amount_in_cents": 500,
+        "group_id": 4
+    },
+    {
+        "expense_id": 1,
+        "username": "oliver",
+        "amount_in_cents": 100,
+        "group_id": 2
+    },
+    {
+        "expense_id": 1,
+        "username": "jacob",
+        "amount_in_cents": 100,
+        "group_id": 2
+    },
+    {
+        "expense_id": 1,
+        "username": "admin",
+        "amount_in_cents": 100,
+        "group_id": 2
+    },
+    {
+        "expense_id": 2,
+        "username": "michael",
+        "amount_in_cents": 400,
+        "group_id": 1
+    },
+    {
+        "expense_id": 2,
+        "username": "patrick",
+        "amount_in_cents": 400,
+        "group_id": 1
+    },
+    {
+        "expense_id": 1,
+        "username": "jacob",
+        "amount_in_cents": 100000,
+        "group_id": 3
+    }
+]

@@ -3,5 +3,60 @@
         "group_id": 1,
         "username": "admin",
         "is_owner": true
+    },
+    {
+        "group_id": 1,
+        "username": "patrick",
+        "is_owner": false
+    },
+    {
+        "group_id": 1,
+        "username": "michael",
+        "is_owner": false
+    },
+    {
+        "group_id": 3,
+        "username": "oliver",
+        "is_owner": true
+    },
+    {
+        "group_id": 3,
+        "username": "jacob",
+        "is_owner": true
+    },
+    {
+        "group_id": 2,
+        "username": "admin",
+        "is_owner": true
+    },
+    {
+        "group_id": 2,
+        "username": "patrick",
+        "is_owner": false
+    },
+    {
+        "group_id": 2,
+        "username": "oliver",
+        "is_owner": false
+    },
+    {
+        "group_id": 2,
+        "username": "jacob",
+        "is_owner": false
+    },
+    {
+        "group_id": 2,
+        "username": "michael",
+        "is_owner": false
+    },
+    {
+        "group_id": 4,
+        "username": "patrick",
+        "is_owner": true
+    },
+    {
+        "group_id": 4,
+        "username": "michael",
+        "is_owner": true
     }
 ]

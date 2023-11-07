@@ -13,13 +13,16 @@ generator client {
 
 // data models
 model User {
-    username           String        @id @unique
-    email              String        @unique
+    username           String          @id @unique
+    email              String          @unique
     full_name          String
     hashed_password    String
     profile_image_name String
-    profile_image      Image         @relation(fields: [profile_image_name], references: [name])
+    profile_image      Image           @relation(fields: [profile_image_name], references: [name])
     GroupMember        GroupMember[]
+    Expense            Expense[]
+    ExpenseMember      ExpenseMember[]
+    Transaction        Transaction[]
 }
 
 model Token {
@@ -38,10 +41,14 @@ model Image {
 }
 
 model Group {
-    id          Int           @id @default(autoincrement())
-    name        String
-    description String
-    GroupMember GroupMember[]
+    id            Int           @id @default(autoincrement())
+    name          String
+    description   String
+    currency_code String
+    currency      Currency      @relation(fields: [currency_code], references: [code])
+    GroupMember   GroupMember[]
+    Expense       Expense[]
+    Transaction   Transaction[]
 }
 
 model GroupMember {
@@ -52,4 +59,50 @@ model GroupMember {
     is_owner Boolean @default(false)
 
     @@id([group_id, username])
+}
+
+model Currency {
+    id     Int     @id @default(autoincrement())
+    code   String  @unique // ISO 4217
+    name   String
+    symbol String
+    Group  Group[]
+}
+
+model Expense {
+    id              Int
+    name            String
+    description     String
+    amount_in_cents Int
+    group           Group           @relation(fields: [group_id], references: [id])
+    group_id        Int
+    payer           User            @relation(fields: [payer_username], references: [username])
+    payer_username  String
+    date            DateTime        @default(now())
+    ExpenseMember   ExpenseMember[]
+
+    @@id([id, group_id])
+}
+
+model ExpenseMember {
+    expense_id      Int
+    group_id        Int
+    username        String
+    amount_in_cents Int
+    expense         Expense @relation(fields: [expense_id, group_id], references: [id, group_id])
+    user            User    @relation(fields: [username], references: [username])
+
+    @@id([expense_id, group_id, username])
+}
+
+model Transaction {
+    id              Int
+    group_id        Int
+    username        String
+    amount_in_cents Int
+    date            DateTime @default(now())
+    user            User     @relation(fields: [username], references: [username])
+    group           Group    @relation(fields: [group_id], references: [id])
+
+    @@id([id, group_id])
 }

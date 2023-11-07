@@ -2,16 +2,25 @@
     {
         "id": 1,
         "name": "Holiday Expenses",
-        "description": "Expenses for the holiday season"
+        "description": "Expenses for the holiday season",
+        "currency_code": "USD"
     },
     {
         "id": 2,
         "name": "LAN Party",
-        "description": "Expenses for the LAN party"
+        "description": "Expenses for the LAN party",
+        "currency_code": "USD"
     },
     {
         "id": 3,
         "name": "New Car",
-        "description": "Expenses for the new car"
+        "description": "Expenses for the new car",
+        "currency_code": "USD"
+    },
+    {
+        "id": 4,
+        "name": "Fancy Dinner",
+        "description": "Expenses for the fancy dinner",
+        "currency_code": "USD"
     }
 ]
