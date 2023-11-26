@@ -133,7 +133,7 @@ def add_group_member(
     username: str,
     is_owner: bool,
     current_user: Annotated[User, Depends(get_current_user)],
-) -> list[GroupMember]:
+) -> list[GroupMemberModel]:
     """Add a user to a group"""
     db = get_client()
 
