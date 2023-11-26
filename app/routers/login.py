@@ -32,6 +32,7 @@ def signup(
     email: Annotated[str, Form()],
     full_name: Annotated[str, Form()],
     password: Annotated[str, Form()],
+    profile_image: Annotated[str, Form()],
 ) -> Token:
     """Signup for access token"""
     db = get_client()
@@ -42,6 +43,7 @@ def signup(
             "email": email,
             "full_name": full_name,
             "hashed_password": get_password_hash(password),
+            "profile_image": profile_image,
         },
     )
 

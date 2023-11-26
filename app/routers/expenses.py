@@ -2,7 +2,7 @@
 from fastapi import APIRouter, Depends
 
 from prisma import get_client
-from prisma.models import Expense
+from prisma.models import Expense, ExpenseMember
 from typing import Annotated
 from pydantic import BaseModel
 
@@ -141,3 +141,41 @@ def get_expense(
         raise Exception("Expense not found")
 
     return expense
+
+
+@router.get("/groups/{group_id}/expenses/{expense_id}/members")
+def get_expense_members(
+    group_id: int,
+    expense_id: int,
+    current_user: Annotated[User, Depends(get_current_user)],
+) -> list[ExpenseMember]:
+    """Get all expense members"""
+    db = get_client()
+
+    # Check if the current user is a member of the group
+    group_member = db.groupmember.find_first(
+        where={
+            "username": current_user.username,
+            "group_id": group_id,
+        },
+    )
+
+    if not group_member:
+        raise Exception("You are not a member of this group")
+
+    expense = db.expense.find_first(
+        where={
+            "group_id": group_id,
+            "id": expense_id,
+        },
+    )
+
+    if not expense:
+        raise Exception("Expense not found")
+
+    return db.expensemember.find_many(
+        where={
+            "group_id": group_id,
+            "expense_id": expense_id,
+        },
+    )
