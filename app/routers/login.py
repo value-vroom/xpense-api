@@ -42,7 +42,7 @@ def signup(
             "email": email,
             "full_name": full_name,
             "hashed_password": get_password_hash(password),
-            "profile_image": profile_image,
+            "profile_image_name": profile_image,
         },
     )
 
