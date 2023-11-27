@@ -60,7 +60,6 @@ def update_user(  # noqa: PLR0913
     username: str,
     email: Annotated[str, Form()],
     full_name: Annotated[str, Form()],
-    password: Annotated[str, Form()],
     profile_image: Annotated[str, Form()],
     current_user: Annotated[User, Depends(get_current_user)],
 ) -> User:
@@ -76,7 +75,6 @@ def update_user(  # noqa: PLR0913
         data={
             "email": email,
             "full_name": full_name,
-            "hashed_password": get_password_hash(password),
             "profile_image_name": profile_image,
         },
     )
